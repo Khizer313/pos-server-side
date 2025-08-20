@@ -60,6 +60,21 @@ type PaginatedCategories {
   total: Int!
 }
 
+type Product {
+  productId: Int!
+  name: String!
+  categoryAssigned: String!
+  price: Float!
+  pieces: Int!
+  status: String!
+  createdAt: DateTime!
+}
+
+type PaginatedProducts {
+  data: [Product!]!
+  total: Int!
+}
+
 type Query {
   customers: [Customer!]!
   customerByPhone(phone: String!): Customer!
@@ -71,6 +86,8 @@ type Query {
   brandsPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedBrands!
   categories: [Category!]!
   categoriesPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedCategories!
+  products: [Product!]!
+  productsPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedProducts!
 }
 
 type Mutation {
@@ -86,6 +103,9 @@ type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(categoryId: Int!, updateCategoryInput: CreateCategoryInput!): Category!
   removeCategory(categoryId: Int!): Category!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(productId: Int!, updateProductInput: CreateProductInput!): Product!
+  removeProduct(productId: Int!): Product!
 }
 
 input CreateCustomerInput {
@@ -110,5 +130,13 @@ input CreateBrandInput {
 input CreateCategoryInput {
   name: String!
   brandAssigned: String
+  status: String!
+}
+
+input CreateProductInput {
+  name: String!
+  categoryAssigned: String!
+  price: Float!
+  pieces: Int!
   status: String!
 }

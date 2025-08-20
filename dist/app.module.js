@@ -17,6 +17,7 @@ const customers_module_1 = require("./modules/customers/customers.module");
 const suppliers_module_1 = require("./modules/suppliers/suppliers.module");
 const brands_module_1 = require("./modules/brands/brands.module");
 const categories_module_1 = require("./modules/categories/categories.module");
+const products_module_1 = require("./modules/products/products.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -34,6 +35,7 @@ exports.AppModule = AppModule = __decorate([
             suppliers_module_1.SuppliersModule,
             brands_module_1.BrandsModule,
             categories_module_1.CategoriesModule,
+            products_module_1.ProductsModule,
         ],
     })
 ], AppModule);

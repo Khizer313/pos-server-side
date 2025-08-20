@@ -16,6 +16,9 @@ import { CustomersModule } from './modules/customers/customers.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module'; 
 import { BrandsModule } from './modules/brands/brands.module'; 
 import { CategoriesModule } from './modules/categories/categories.module';
+import { ProductsModule } from './modules/products/products.module';
+
+
 @Module({
   imports: [
     // .env file load hoti hai globally
@@ -36,6 +39,8 @@ import { CategoriesModule } from './modules/categories/categories.module';
     SuppliersModule, 
     BrandsModule, 
     CategoriesModule,
+    ProductsModule,
+
   ],
 })
 export class AppModule {}
