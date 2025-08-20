@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Customer {
+  customerId: Float!
+  name: String!
+  phone: String!
+  balance: String!
+  status: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PaginatedCustomers {
+  data: [Customer!]!
+  total: Int!
+}
+
+type Supplier {
+  supplierId: Float!
+  name: String!
+  phone: String!
+  balance: String!
+  status: String!
+  createdAt: DateTime!
+}
+
+type PaginatedSuppliers {
+  data: [Supplier!]!
+  total: Int!
+}
+
+type Brand {
+  brandId: Int!
+  name: String!
+  status: String!
+  createdAt: DateTime!
+}
+
+type PaginatedBrands {
+  data: [Brand!]!
+  total: Int!
+}
+
+type Category {
+  categoryId: Int!
+  name: String!
+  brandAssigned: String
+  status: String!
+  createdAt: DateTime!
+}
+
+type PaginatedCategories {
+  data: [Category!]!
+  total: Int!
+}
+
+type Query {
+  customers: [Customer!]!
+  customerByPhone(phone: String!): Customer!
+  customersPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedCustomers!
+  suppliers: [Supplier!]!
+  supplierByPhone(phone: String!): Supplier!
+  suppliersPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedSuppliers!
+  brands: [Brand!]!
+  brandsPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedBrands!
+  categories: [Category!]!
+  categoriesPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedCategories!
+}
+
+type Mutation {
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  updateCustomer(customerId: Int!, updateCustomerInput: CreateCustomerInput!): Customer!
+  removeCustomer(customerId: Int!): Customer!
+  createSupplier(createSupplierInput: CreateSupplierInput!): Supplier!
+  updateSupplier(supplierId: Int!, updateSupplierInput: CreateSupplierInput!): Supplier!
+  removeSupplier(supplierId: Int!): Supplier!
+  createBrand(createBrandInput: CreateBrandInput!): Brand!
+  updateBrand(brandId: Int!, updateBrandInput: CreateBrandInput!): Brand!
+  removeBrand(brandId: Int!): Brand!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(categoryId: Int!, updateCategoryInput: CreateCategoryInput!): Category!
+  removeCategory(categoryId: Int!): Category!
+}
+
+input CreateCustomerInput {
+  name: String!
+  phone: String!
+  balance: String!
+  status: String!
+}
+
+input CreateSupplierInput {
+  name: String!
+  phone: String!
+  balance: String!
+  status: String!
+}
+
+input CreateBrandInput {
+  name: String!
+  status: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+  brandAssigned: String
+  status: String!
+}

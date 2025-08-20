@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@nestjs/apollo": "^13.1.0",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/graphql": "^13.1.0",
+    "@nestjs/mongoose": "^11.0.3",
+    "@nestjs/platform-express": "^11.1.3",
+    "apollo-server-express": "^3.13.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "graphql": "^16.11.0",
+    "mongoose": "^8.16.1"
+  },
+  "devDependencies": {
+    "@types/ioredis": "^4.28.10"
+  }
+}
