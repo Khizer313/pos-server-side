@@ -9,32 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateVariationInput = void 0;
+exports.PaginatedSales = void 0;
 const graphql_1 = require("@nestjs/graphql");
-let CreateVariationInput = class CreateVariationInput {
+const sales_schema_1 = require("../entities/sales.schema");
+let PaginatedSales = class PaginatedSales {
 };
-exports.CreateVariationInput = CreateVariationInput;
+exports.PaginatedSales = PaginatedSales;
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], CreateVariationInput.prototype, "name", void 0);
+    (0, graphql_1.Field)(() => [sales_schema_1.Sale]),
+    __metadata("design:type", Array)
+], PaginatedSales.prototype, "data", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], CreateVariationInput.prototype, "productAssigned", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
-], CreateVariationInput.prototype, "pieces", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", Number)
-], CreateVariationInput.prototype, "price", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], CreateVariationInput.prototype, "status", void 0);
-exports.CreateVariationInput = CreateVariationInput = __decorate([
-    (0, graphql_1.InputType)()
-], CreateVariationInput);
-//# sourceMappingURL=variations.input.js.map
+], PaginatedSales.prototype, "total", void 0);
+exports.PaginatedSales = PaginatedSales = __decorate([
+    (0, graphql_1.ObjectType)()
+], PaginatedSales);
+//# sourceMappingURL=paginated-sales.output.js.map

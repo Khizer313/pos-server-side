@@ -17,6 +17,8 @@ import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { BrandsModule } from './modules/brands/brands.module'; 
 import { CategoriesModule } from './modules/categories/categories.module';
 import { ProductsModule } from './modules/products/products.module';
+import { VariationsModule } from './modules/variations/variations.module';
+import { SalesModule } from './modules/sales/sales.module';
 
 
 @Module({
@@ -40,6 +42,8 @@ import { ProductsModule } from './modules/products/products.module';
     BrandsModule, 
     CategoriesModule,
     ProductsModule,
+    VariationsModule,
+    SalesModule
 
   ],
 })

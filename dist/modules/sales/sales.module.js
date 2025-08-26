@@ -6,19 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VariationsModule = void 0;
+exports.SalesModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const variations_resolvers_1 = require("./variations.resolvers");
-const variations_services_1 = require("./variations.services");
-const variations_schema_1 = require("./entities/variations.schema");
-let VariationsModule = class VariationsModule {
+const sales_services_1 = require("./sales.services");
+const sales_resolvers_1 = require("./sales.resolvers");
+const sales_schema_1 = require("./entities/sales.schema");
+let SalesModule = class SalesModule {
 };
-exports.VariationsModule = VariationsModule;
-exports.VariationsModule = VariationsModule = __decorate([
+exports.SalesModule = SalesModule;
+exports.SalesModule = SalesModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: variations_schema_1.Variation.name, schema: variations_schema_1.VariationSchema }])],
-        providers: [variations_resolvers_1.VariationsResolver, variations_services_1.VariationsService],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: sales_schema_1.Sale.name, schema: sales_schema_1.SaleSchema }])],
+        providers: [sales_resolvers_1.SalesResolver, sales_services_1.SalesService],
     })
-], VariationsModule);
-//# sourceMappingURL=variations.module.js.map
+], SalesModule);
+//# sourceMappingURL=sales.module.js.map
