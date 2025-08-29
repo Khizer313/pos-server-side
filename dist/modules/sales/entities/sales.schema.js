@@ -16,38 +16,38 @@ let SaleItem = class SaleItem {
 };
 exports.SaleItem = SaleItem;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "productId", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)({ nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", String)
 ], SaleItem.prototype, "productName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "ctn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "pieces", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "quantity", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "price", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "total", void 0);
 exports.SaleItem = SaleItem = __decorate([
@@ -70,41 +70,41 @@ __decorate([
 ], Sale.prototype, "customerId", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Sale.prototype, "invoiceNo", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Sale.prototype, "date", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Sale.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Date)
 ], Sale.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Sale.prototype, "paymentMethod", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, graphql_1.Field)({ nullable: true }),
+    (0, mongoose_1.Prop)({ required: false }),
     __metadata("design:type", String)
 ], Sale.prototype, "notes", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, mongoose_1.Prop)(),
+    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
 ], Sale.prototype, "total", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => [SaleItem]),
+    (0, graphql_1.Field)(() => [SaleItem], { nullable: true }),
     (0, mongoose_1.Prop)({ type: [exports.SaleItemSchema], default: [] }),
     __metadata("design:type", Array)
 ], Sale.prototype, "items", void 0);

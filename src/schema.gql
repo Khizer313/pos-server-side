@@ -91,13 +91,13 @@ type PaginatedVariations {
 }
 
 type SaleItem {
-  productId: Int!
-  productName: String!
-  ctn: Int!
-  pieces: Int!
-  quantity: Int!
-  price: Float!
-  total: Float!
+  productId: Int
+  productName: String
+  ctn: Int
+  pieces: Int
+  quantity: Int
+  price: Float
+  total: Float
 }
 
 type Sale {
@@ -108,9 +108,9 @@ type Sale {
   status: String!
   createdAt: DateTime!
   paymentMethod: String!
-  notes: String!
+  notes: String
   total: Float!
-  items: [SaleItem!]!
+  items: [SaleItem!]
 }
 
 type PaginatedSales {
@@ -135,7 +135,18 @@ type Query {
   variationsPaginated(page: Int!, limit: Int!, search: String, status: String, startDate: String, endDate: String): PaginatedVariations!
   sales: [Sale!]!
   saleById(saleId: Int!): Sale!
-  getSalesPaginated(page: Int!, limit: Int!, search: String, status: String, paymentMethod: String, startDate: String, endDate: String): PaginatedSales!
+  getSalesPaginated(page: Int!, limit: Int!, search: String, status: String, paymentMethod: String, startDate: String, endDate: String, filters: [FilterInput!], sort: SortInput): PaginatedSales!
+}
+
+input FilterInput {
+  field: String!
+  operator: String!
+  value: String!
+}
+
+input SortInput {
+  field: String!
+  direction: String!
 }
 
 type Mutation {
@@ -158,7 +169,7 @@ type Mutation {
   updateVariation(variationId: Int!, updateVariationInput: CreateVariationInput!): Variation!
   removeVariation(variationId: Int!): Variation!
   createSale(createSaleInput: CreateSaleInput!): Sale!
-  updateSale(saleId: Int!, updateSaleInput: CreateSaleInput!): Sale!
+  updateSale(saleId: Int!, updateSaleInput: UpdateSaleInput!): Sale!
   removeSale(saleId: Int!): Sale!
 }
 
@@ -205,21 +216,41 @@ input CreateVariationInput {
 
 input CreateSaleInput {
   customerId: Int!
-  invoiceNo: String!
   date: String!
   status: String!
   paymentMethod: String!
-  notes: String!
+  notes: String
   total: Float!
   items: [SaleItemInput!]!
 }
 
 input SaleItemInput {
-  productId: Int!
+  productId: Int
   productName: String!
   ctn: Int!
   pieces: Int!
   quantity: Int!
   price: Float!
   total: Float!
+}
+
+input UpdateSaleInput {
+  customerId: Int
+  invoiceNo: String
+  date: String
+  status: String
+  paymentMethod: String
+  notes: String
+  total: Float
+  items: [UpdateSaleItemInput!]
+}
+
+input UpdateSaleItemInput {
+  productId: Int
+  productName: String
+  ctn: Int
+  pieces: Int
+  quantity: Int
+  price: Float
+  total: Float
 }

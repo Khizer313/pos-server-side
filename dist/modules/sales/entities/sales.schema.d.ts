@@ -1,15 +1,15 @@
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Document } from 'mongoose';
 export type SaleDocument = Sale & Document;
 export declare class SaleItem {
-    productId: number;
-    productName: string;
-    ctn: number;
-    pieces: number;
-    quantity: number;
-    price: number;
-    total: number;
+    productId?: number;
+    productName?: string;
+    ctn?: number;
+    pieces?: number;
+    quantity?: number;
+    price?: number;
+    total?: number;
 }
-export declare const SaleItemSchema: MongooseSchema<SaleItem, import("mongoose").Model<SaleItem, any, any, any, Document<unknown, any, SaleItem, any> & SaleItem & {
+export declare const SaleItemSchema: import("mongoose").Schema<SaleItem, import("mongoose").Model<SaleItem, any, any, any, Document<unknown, any, SaleItem, any> & SaleItem & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -26,11 +26,11 @@ export declare class Sale {
     status: string;
     createdAt: Date;
     paymentMethod: string;
-    notes: string;
+    notes?: string;
     total: number;
-    items: SaleItem[];
+    items?: SaleItem[];
 }
-export declare const SaleSchema: MongooseSchema<Sale, import("mongoose").Model<Sale, any, any, any, Document<unknown, any, Sale, any> & Sale & {
+export declare const SaleSchema: import("mongoose").Schema<Sale, import("mongoose").Model<Sale, any, any, any, Document<unknown, any, Sale, any> & Sale & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

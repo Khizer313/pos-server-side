@@ -24,9 +24,11 @@ let SalesService = class SalesService {
     async create(createSaleInput) {
         const lastSale = await this.saleModel.findOne().sort({ saleId: -1 }).lean();
         const nextId = lastSale?.saleId ? lastSale.saleId + 1 : 1001;
+        const nextInvoiceNo = `${nextId}`;
         const createdSale = new this.saleModel({
             ...createSaleInput,
             saleId: nextId,
+            invoiceNo: nextInvoiceNo,
             createdAt: new Date(),
         });
         return createdSale.save();
@@ -43,41 +45,64 @@ let SalesService = class SalesService {
     async findBySaleId(saleId) {
         return this.saleModel.findOne({ saleId }).lean();
     }
-    async findPaginated(page, limit, search, status, startDate, endDate, paymentMethod) {
-        const filter = {};
+    async findPaginated(page, limit, search, status, startDate, endDate, paymentMethod, sortBy = 'createdAt', sortOrder = 'desc', filters) {
+        const match = {};
         if (search) {
-            const terms = search.split(' ').filter(Boolean);
-            filter.$and = terms.map(term => ({
+            const terms = search.split(" ").filter(Boolean);
+            match.$and = terms.map(term => ({
                 $or: [
                     { invoiceNo: { $regex: term, $options: 'i' } },
                     { status: { $regex: term, $options: 'i' } },
-                    {
-                        $expr: {
-                            $regexMatch: { input: { $toString: '$saleId' }, regex: term, options: 'i' },
-                        },
-                    },
-                ],
+                    { paymentMethod: { $regex: term, $options: 'i' } },
+                    { customerName: { $regex: term, $options: 'i' } },
+                    { "products.productName": { $regex: term, $options: 'i' } },
+                ]
             }));
         }
+        if (startDate || endDate) {
+            match.createdAt = {};
+            if (startDate)
+                match.createdAt.$gte = new Date(startDate);
+            if (endDate) {
+                const end = new Date(endDate);
+                end.setDate(end.getDate() + 1);
+                match.createdAt.$lt = end;
+            }
+        }
         if (status)
-            filter.status = status;
+            match.status = status;
         if (paymentMethod)
-            filter.paymentMethod = paymentMethod;
-        if (startDate) {
-            filter.createdAt = { ...filter.createdAt, $gte: new Date(startDate) };
-        }
-        if (endDate) {
-            const end = new Date(endDate);
-            end.setDate(end.getDate() + 1);
-            filter.createdAt = { ...filter.createdAt, $lt: end };
-        }
-        const data = await this.saleModel
-            .find(filter)
-            .sort({ createdAt: -1 })
-            .skip((page - 1) * limit)
-            .limit(limit)
-            .lean();
-        const total = await this.saleModel.countDocuments(filter);
+            match.paymentMethod = paymentMethod;
+        filters?.forEach(f => {
+            if (f.operator === "contains") {
+                match[f.field] = { $regex: f.value, $options: "i" };
+            }
+            else if (f.operator === "equals") {
+                match[f.field] = f.value;
+            }
+            else if (f.operator === "startsWith") {
+                match[f.field] = { $regex: `^${f.value}`, $options: "i" };
+            }
+        });
+        const sort = {};
+        sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        const [result] = await this.saleModel.aggregate([
+            { $match: match },
+            { $sort: sort },
+            {
+                $facet: {
+                    data: [
+                        { $skip: (page - 1) * limit },
+                        { $limit: limit },
+                    ],
+                    total: [
+                        { $count: "count" },
+                    ],
+                },
+            },
+        ]);
+        const data = result.data || [];
+        const total = result.total[0]?.count || 0;
         return { data, total };
     }
 };

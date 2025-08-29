@@ -18,6 +18,7 @@ const sales_services_1 = require("./sales.services");
 const sales_schema_1 = require("./entities/sales.schema");
 const sales_input_1 = require("./dto/sales.input");
 const paginated_sales_output_1 = require("./dto/paginated-sales.output");
+const sales_input_2 = require("./dto/sales.input");
 let SalesResolver = class SalesResolver {
     constructor(salesService) {
         this.salesService = salesService;
@@ -37,8 +38,8 @@ let SalesResolver = class SalesResolver {
     removeSale(saleId) {
         return this.salesService.removeBySaleId(saleId);
     }
-    getSalesPaginated(page, limit, search, status, paymentMethod, startDate, endDate) {
-        return this.salesService.findPaginated(page, limit, search, status, startDate, endDate, paymentMethod);
+    getSalesPaginated(page, limit, search, status, paymentMethod, startDate, endDate, filters, sort) {
+        return this.salesService.findPaginated(page, limit, search, status, startDate, endDate, paymentMethod, sort?.field || 'createdAt', sort?.direction || 'desc', filters);
     }
 };
 exports.SalesResolver = SalesResolver;
@@ -67,7 +68,7 @@ __decorate([
     __param(0, (0, graphql_1.Args)('saleId', { type: () => graphql_1.Int })),
     __param(1, (0, graphql_1.Args)('updateSaleInput')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, sales_input_1.CreateSaleInput]),
+    __metadata("design:paramtypes", [Number, sales_input_1.UpdateSaleInput]),
     __metadata("design:returntype", void 0)
 ], SalesResolver.prototype, "updateSale", null);
 __decorate([
@@ -86,8 +87,10 @@ __decorate([
     __param(4, (0, graphql_1.Args)('paymentMethod', { type: () => String, nullable: true })),
     __param(5, (0, graphql_1.Args)('startDate', { type: () => String, nullable: true })),
     __param(6, (0, graphql_1.Args)('endDate', { type: () => String, nullable: true })),
+    __param(7, (0, graphql_1.Args)('filters', { type: () => [sales_input_2.FilterInput], nullable: true })),
+    __param(8, (0, graphql_1.Args)('sort', { type: () => sales_input_2.SortInput, nullable: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number, String, String, String, String, String]),
+    __metadata("design:paramtypes", [Number, Number, String, String, String, String, String, Array, sales_input_2.SortInput]),
     __metadata("design:returntype", void 0)
 ], SalesResolver.prototype, "getSalesPaginated", null);
 exports.SalesResolver = SalesResolver = __decorate([

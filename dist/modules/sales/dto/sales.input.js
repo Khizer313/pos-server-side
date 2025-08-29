@@ -9,13 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateSaleInput = exports.SaleItemInput = void 0;
+exports.SortInput = exports.FilterInput = exports.UpdateSaleInput = exports.UpdateSaleItemInput = exports.CreateSaleInput = exports.SaleItemInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 let SaleItemInput = class SaleItemInput {
 };
 exports.SaleItemInput = SaleItemInput;
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
     __metadata("design:type", Number)
 ], SaleItemInput.prototype, "productId", void 0);
 __decorate([
@@ -55,10 +56,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], CreateSaleInput.prototype, "invoiceNo", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
 ], CreateSaleInput.prototype, "date", void 0);
 __decorate([
     (0, graphql_1.Field)(),
@@ -69,7 +66,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateSaleInput.prototype, "paymentMethod", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], CreateSaleInput.prototype, "notes", void 0);
 __decorate([
@@ -83,4 +80,108 @@ __decorate([
 exports.CreateSaleInput = CreateSaleInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateSaleInput);
+let UpdateSaleItemInput = class UpdateSaleItemInput {
+};
+exports.UpdateSaleItemInput = UpdateSaleItemInput;
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "productId", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleItemInput.prototype, "productName", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "ctn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "pieces", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "quantity", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "price", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleItemInput.prototype, "total", void 0);
+exports.UpdateSaleItemInput = UpdateSaleItemInput = __decorate([
+    (0, graphql_1.InputType)()
+], UpdateSaleItemInput);
+let UpdateSaleInput = class UpdateSaleInput {
+};
+exports.UpdateSaleInput = UpdateSaleInput;
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleInput.prototype, "customerId", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleInput.prototype, "invoiceNo", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleInput.prototype, "date", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleInput.prototype, "status", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleInput.prototype, "paymentMethod", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateSaleInput.prototype, "notes", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
+    __metadata("design:type", Number)
+], UpdateSaleInput.prototype, "total", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [UpdateSaleItemInput], { nullable: true }),
+    __metadata("design:type", Array)
+], UpdateSaleInput.prototype, "items", void 0);
+exports.UpdateSaleInput = UpdateSaleInput = __decorate([
+    (0, graphql_1.InputType)()
+], UpdateSaleInput);
+let FilterInput = class FilterInput {
+};
+exports.FilterInput = FilterInput;
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], FilterInput.prototype, "field", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], FilterInput.prototype, "operator", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], FilterInput.prototype, "value", void 0);
+exports.FilterInput = FilterInput = __decorate([
+    (0, graphql_1.InputType)()
+], FilterInput);
+let SortInput = class SortInput {
+};
+exports.SortInput = SortInput;
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], SortInput.prototype, "field", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], SortInput.prototype, "direction", void 0);
+exports.SortInput = SortInput = __decorate([
+    (0, graphql_1.InputType)()
+], SortInput);
 //# sourceMappingURL=sales.input.js.map

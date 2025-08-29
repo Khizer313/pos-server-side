@@ -1,39 +1,39 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Document } from 'mongoose';
+import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 
 export type SaleDocument = Sale & Document;
 
 @ObjectType()
 @Schema()
 export class SaleItem {
-  @Field(() => Int)
-  @Prop({ required: true })
-  productId!: number;
+  @Field(() => Int, { nullable: true })
+  @Prop({ required: false })
+  productId?: number;
 
-  @Field()
-  @Prop({ required: true })
-  productName!: string;
+  @Field({ nullable: true })
+  @Prop({ required: false })
+  productName?: string;
 
-  @Field(() => Int)
-  @Prop({ required: true })
-  ctn!: number;
+  @Field(() => Int, { nullable: true })
+  @Prop({ required: false })
+  ctn?: number;
 
-  @Field(() => Int)
-  @Prop({ required: true })
-  pieces!: number;
+  @Field(() => Int, { nullable: true })
+  @Prop({ required: false })
+  pieces?: number;
 
-  @Field(() => Int)
-  @Prop({ required: true })
-  quantity!: number;
+  @Field(() => Int, { nullable: true })
+  @Prop({ required: false })
+  quantity?: number;
 
-  @Field()
-  @Prop({ required: true })
-  price!: number;
+  @Field(() => Float, { nullable: true })
+  @Prop({ required: false })
+  price?: number;
 
-  @Field()
-  @Prop({ required: true })
-  total!: number;
+  @Field(() => Float, { nullable: true })
+  @Prop({ required: false })
+  total?: number;
 }
 
 export const SaleItemSchema = SchemaFactory.createForClass(SaleItem);
@@ -50,36 +50,36 @@ export class Sale {
   customerId!: number;
 
   @Field()
-  @Prop()
+  @Prop({ required: true })
   invoiceNo!: string;
 
   @Field()
-  @Prop()
+  @Prop({ required: true })
   date!: string;
 
   @Field()
-  @Prop()
+  @Prop({ required: true })
   status!: string;
 
   @Field()
-  @Prop()
+  @Prop({ required: true })
   createdAt!: Date;
 
   @Field()
-  @Prop()
+  @Prop({ required: true })
   paymentMethod!: string;
 
-  @Field()
-  @Prop()
-  notes!: string;
+  @Field({ nullable: true })
+  @Prop({ required: false })
+  notes?: string;
 
-  @Field()
-  @Prop()
+  @Field(() => Float)
+  @Prop({ required: true })
   total!: number;
 
-  @Field(() => [SaleItem])
-  @Prop({ type: [SaleItemSchema], default: [] }) // ✅ reference after declaration
-  items!: SaleItem[];
+  @Field(() => [SaleItem], { nullable: true })
+  @Prop({ type: [SaleItemSchema], default: [] })
+  items?: SaleItem[];
 }
 
 export const SaleSchema = SchemaFactory.createForClass(Sale);
